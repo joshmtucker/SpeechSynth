@@ -55,11 +55,6 @@ speech.volume = .5
 ```
 
 ### Methods
-Create a SpeechSynth variable.
-
-```coffeescript
-speech = new SpeechSynth
-```
 
 Start speaking.
 
