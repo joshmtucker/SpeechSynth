@@ -3,7 +3,7 @@ Framer module for Web SpeechSynthesis. As documented in [Web Speech API Specific
 
 Check out *AfricanAnimals.framer* to see SpeechSynth in action.
 
-A great getting started guide on understanding how Web SpeechSynthesis works is available from [Treehouse](http://blog.teamtreehouse.com/getting-started-speech-synthesis-api "Getting Started with the Speech Synthesis API") .
+A great getting started guide on understanding how Web SpeechSynthesis works is available from [Treehouse](http://blog.teamtreehouse.com/getting-started-speech-synthesis-api "Getting Started with the Speech Synthesis API").
 
 ## How to use
 Include *SpeechSynth.coffee* in the */modules* folder of your Framer Project.
@@ -12,6 +12,46 @@ Reference the module in your Framer project.
 
 ```coffeescript
 {SpeechSynth} = require "SpeechSynth"
+```
+
+### Properties
+* .voices *array* Names of all supported voices
+* .text – *string* Text speechSynthesis reads
+* .voice – *string* Name of voice 
+* .lang – *string* Language code for voice
+* .volume – *number* Between 0 and 1
+* .rate – *number* Speed of spoken text (between 1 and 10)
+* .pitch – *number* Between 0 and 2
+
+**NOTES:** 
+
+Not all voices support each language, rate, or pitch value.
+
+If you wish to grab the raw voice objects from speechSynthesis, you can access them through the SpeechSynth variable.
+
+```coffeescript
+speech._voices
+```
+
+#### Example
+Add properties at creation.
+
+```coffeescript
+speech = new SpeechSynth 
+	text: "Hello world" 
+	voice: "Samantha"
+	volume: 1
+	rate: 1.25
+```
+
+**OR**
+
+Add properties individually.
+
+```coffeescript
+speech = new SpeechSynth
+speech.text = "Hello world"
+speech.volume = .5
 ```
 
 ### Methods
@@ -67,49 +107,8 @@ Check if speechSynthesis is currently paused.
 speech.isPaused
 ```
 
-
-### Properties
-* .voices *array* Names of all supported voices
-* .text – *string* Text speechSynthesis reads
-* .voice – *string* Name of voice 
-* .lang – *string* Language code for voice
-* .volume – *number* Between 0 and 1
-* .rate – *number* Speed of spoken text (between 1 and 10)
-* .pitch – *number* Between 0 and 2
-
-**NOTES:** 
-
-Not all voices support each language, rate, or pitch value.
-
-If you wish to grab the raw voice objects from speechSynthesis, you can access them through the SpeechSynth variable.
-
-```coffeescript
-speech._voices
-```
-
-#### Example
-Add properties at creation.
-
-```coffeescript
-speech = new SpeechSynth 
-	text: "Hello world" 
-	voice: "Samantha"
-	volume: 1
-	rate: 1.25
-```
-
-**OR**
-
-Add properties individually.
-
-```coffeescript
-speech = new SpeechSynth
-speech.text = "Hello world"
-speech.volume = .5
-```
-
 ## Advanced
-The SpeechSynthesisUtterance object (the object that handles all the properties listed above) has supported for events. You can listen for events like:
+The SpeechSynthesisUtterance object (the object that handles all the properties listed above) has support for events. You can listen for events like:
 
 * start
 * end
