@@ -15,13 +15,13 @@ Reference the module in your Framer project.
 ```
 
 ### Properties
-* .voices *array* Names of all supported voices
-* .text – *string* Text speechSynthesis reads
-* .voice – *string* Name of voice 
-* .lang – *string* Language code for voice
-* .volume – *number* Between 0 and 1
-* .rate – *number* Speed of spoken text (between 1 and 10)
-* .pitch – *number* Between 0 and 2
+* .voices *array*		Names of all supported voices
+* .text – *string* 		Text speechSynthesis reads
+* .voice – *string* 	Name of voice 
+* .lang – *string* 		Language code for voice
+* .volume – *number* 	Between 0 and 1
+* .rate – *number* 		Speed of spoken text (between 1 and 10)
+* .pitch – *number* 	Between 0 and 2
 
 **NOTES:** 
 
@@ -118,12 +118,12 @@ To listen to such events, reference the root SpeechSynthesisUtterance variable.
 
 ```coffeescript
 speech._utterance.onstart = (event) - >
-do whatever
+	do whatever
 ```
 
 ## API Status
 
-Web Speech Synthesis API is a little janky as is – in both Chrome and Safari. You may run into some problems with certain events not firing (such as pause) or certain methods not firing correctly (such as .cancel()). Bear with me – some of it is out my control, however I am open to any suggestions on improving the framework of the module.
+Web Speech Synthesis API is a little janky as is – in both Chrome and Safari. You may run into some problems with certain events and methods not firing. Bear with me – some of it is out my control, however I am open to any suggestions on improving the framework of the module.
 
 Cheers!
 
