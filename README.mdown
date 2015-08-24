@@ -1,0 +1,135 @@
+# SpeechSynth
+Framer module for Web SpeechSynthesis. As documented in [Web Speech API Specification](https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html "Web Speech API Specification"). 
+
+Check out *AfricanAnimals.framer* to see SpeechSynth in action.
+
+A great getting started guide on understanding how Web SpeechSynthesis works is available from [Treehouse](http://blog.teamtreehouse.com/getting-started-speech-synthesis-api "Getting Started with the Speech Synthesis API") .
+
+## How to use
+Include *SpeechSynth.coffee* in the */modules* folder of your Framer Project.
+
+Reference the module in your Framer project.
+
+```coffeescript
+{SpeechSynth} = require "SpeechSynth"
+```
+
+### Methods
+Create a SpeechSynth variable.
+
+```coffeescript
+speech = new SpeechSynth
+```
+
+Start speaking.
+
+```coffeescript
+speech.speak()
+```
+
+Remove all utterances from queue. Whenever you call .speak(), said utterance is queued. The speechSynthesis will continue to speak as long as there are utterances in queue.
+
+```coffeescript
+speech.cancel()
+```
+
+Pause speaking.
+
+```coffeescript
+speech.pause()
+```
+
+Resume if paused.
+
+```coffeescript
+# Returns true or false
+speech.resume()
+```
+
+Check if speechSynthesis has any pending utterances. (queued)? 
+
+```coffeescript
+# Returns true or false
+speech.isPending
+```
+
+Check if speechSynthesis is currently speaking.
+
+```coffeescript
+# Returns true or false
+speech.isSpeaking
+```
+
+Check if speechSynthesis is currently paused.
+
+```coffeescript
+# Returns true or false
+speech.isPaused
+```
+
+
+### Properties
+* .voices *array* Names of all supported voices
+* .text – *string* Text speechSynthesis reads
+* .voice – *string* Name of voice 
+* .lang – *string* Language code for voice
+* .volume – *number* Between 0 and 1
+* .rate – *number* Speed of spoken text (between 1 and 10)
+* .pitch – *number* Between 0 and 2
+
+**NOTES:** 
+
+Not all voices support each language, rate, or pitch value.
+
+If you wish to grab the raw voice objects from speechSynthesis, you can access them through the SpeechSynth variable.
+
+```coffeescript
+speech._voices
+```
+
+#### Example
+Add properties at creation.
+
+```coffeescript
+speech = new SpeechSynth 
+	text: "Hello world" 
+	voice: "Samantha"
+	volume: 1
+	rate: 1.25
+```
+
+**OR**
+
+Add properties individually.
+
+```coffeescript
+speech = new SpeechSynth
+speech.text = "Hello world"
+speech.volume = .5
+```
+
+## Advanced
+The SpeechSynthesisUtterance object (the object that handles all the properties listed above) has supported for events. You can listen for events like:
+
+* start
+* end
+* pause
+* resume
+
+Full list available in [Web Speech API Specification](https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html "Web Speech API Specification").
+
+To listen to such events, reference the root SpeechSynthesisUtterance variable.
+
+### Example
+
+```coffeescript
+speech._utterance.onstart = (event) - >
+do whatever
+```
+
+## API Status
+
+Web Speech Synthesis API is a little janky as is – in both Chrome and Safari. You may run into some problems with certain events not firing (such as pause) or certain methods not firing correctly (such as .cancel()). Bear with me – some of it is out my control, however I am open to any suggestions on improving the framework of the module.
+
+Cheers!
+
